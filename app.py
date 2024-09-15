@@ -2,14 +2,8 @@ import os
 import shutil
 from flask import Flask, request, Response, abort
 from run import solve
-from config import allowed_ip
 
 app = Flask(__name__)
-
-@app.before_request
-def valid_address() :
-    if request.remote_addr != allowed_ip :
-        abort(403)
 
 @app.route('/judge', methods=['POST'])
 def judge() :
