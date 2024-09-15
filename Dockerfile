@@ -6,17 +6,16 @@ WORKDIR /app
 
 # install gcc and openjdk
 RUN apt-get update \
-    && apt-get install -y gcc openjdk-11-jdk \
+    && apt-get install -y gcc default-jdk \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # copy .py
 COPY . /app
 
-# set venv
+# set venv and create source directory
 RUN python -m venv venv \
-    && . venv/bin/activate \
-    && pip install --no-cache-dir flask==2.3.2 gunicorn \
+    && venv/bin/pip install --no-cache-dir flask==2.3.2 gunicorn \
     && mkdir source
 
 # expose port
