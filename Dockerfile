@@ -17,6 +17,7 @@ COPY . /app
 RUN python -m venv venv \
     && . venv/bin/activate \
     && pip install --no-cache-dir flask==2.3.2 gunicorn
+    && mkdir source
 
 # expose port
 EXPOSE 5000
